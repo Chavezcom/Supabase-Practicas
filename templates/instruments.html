@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Instrumentos</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #333; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .error { color: #b00; padding: 1rem; background: #fee; }
+    </style>
+</head>
+<body>
+    <h1>Instrumentos ({{ count }})</h1>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% elif instruments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in instruments %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.stock }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay instrumentos registrados.</p>
+    {% endif %}
+</body>
+</html>
